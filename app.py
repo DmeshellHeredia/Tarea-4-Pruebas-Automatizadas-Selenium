@@ -185,5 +185,9 @@ def error_interno(error):
     return render_template("500.html"), 500
 
 
+def create_app():
+    return app
+
+
 if __name__ == "__main__":
     app.run(debug=True)

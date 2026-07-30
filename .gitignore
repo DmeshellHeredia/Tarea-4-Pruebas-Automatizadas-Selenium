@@ -8,3 +8,4 @@ documents/
 *.pdf
 .idea/
 .vscode/
+.pytest_cache/
