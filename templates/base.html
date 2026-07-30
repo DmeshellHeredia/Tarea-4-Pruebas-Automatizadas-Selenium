@@ -11,7 +11,15 @@
         <h1>Gestión de Productos</h1>
         <nav>
             <a href="{{ url_for('inicio') }}">Inicio</a>
-            <a href="{{ url_for('listar_productos') }}">Productos</a>
+            {% if session.get('usuario_id') %}
+                <a href="{{ url_for('listar_productos') }}">Productos</a>
+                <span class="usuario-activo">{{ session.get('usuario_nombre') }}</span>
+                <form method="post" action="{{ url_for('logout') }}" class="formulario-logout">
+                    <button type="submit" id="btn-logout" data-testid="btn-logout" class="boton-logout">Cerrar sesión</button>
+                </form>
+            {% else %}
+                <a href="{{ url_for('login') }}">Iniciar sesión</a>
+            {% endif %}
         </nav>
     </header>
     <main class="contenido">
