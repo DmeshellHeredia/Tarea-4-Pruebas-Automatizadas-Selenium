@@ -88,3 +88,21 @@ class ProductsPage:
             "cantidad": fila.find_element(*self.CELDA_CANTIDAD).text,
             "categoria": fila.find_element(*self.CELDA_CATEGORIA).text,
         }
+
+    def hacer_clic_editar(self, producto_id):
+        localizador = (By.CSS_SELECTOR, f'[data-testid="editar-producto-{producto_id}"]')
+        self.espera.until(EC.element_to_be_clickable(localizador)).click()
+        return self
+
+    def obtener_fila_por_id(self, producto_id):
+        return self.driver.find_element(By.ID, f"fila-producto-{producto_id}")
+
+    def esperar_fila_con_datos(self, producto_id, **valores_esperados):
+        def _condicion(driver):
+            fila = driver.find_element(By.ID, f"fila-producto-{producto_id}")
+            datos = self.obtener_datos_fila(fila)
+            return all(
+                datos.get(clave) == valor for clave, valor in valores_esperados.items()
+            )
+
+        return self.espera.until(_condicion)
