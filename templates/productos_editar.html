@@ -5,7 +5,7 @@
 {% block contenido %}
 <h2>Editar producto</h2>
 
-<form method="post" action="{{ url_for('editar_producto', producto_id=producto_id) }}">
+<form method="post" action="{{ url_for('editar_producto', producto_id=producto_id) }}" novalidate>
     <div class="campo-formulario">
         <label for="nombre">Nombre</label>
         <input
