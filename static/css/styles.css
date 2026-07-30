@@ -30,6 +30,38 @@ body {
     text-decoration: underline;
 }
 
+.encabezado nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.usuario-activo {
+    margin-right: 1rem;
+    opacity: 0.85;
+    font-size: 0.9rem;
+}
+
+.formulario-logout {
+    display: inline;
+    margin: 0;
+}
+
+.boton-logout {
+    background: none;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.boton-logout:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
 .contenido {
     padding: 2rem;
     max-width: 800px;

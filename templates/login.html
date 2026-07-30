@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block titulo %}Iniciar sesión{% endblock %}
+
+{% block contenido %}
+<h2>Iniciar sesión</h2>
+
+{% if errores.credenciales %}
+    <p class="mensaje-error" id="mensaje-login-error" data-testid="mensaje-login-error">{{ errores.credenciales }}</p>
+{% endif %}
+
+<form method="post" action="{{ url_for('login') }}">
+    <div class="campo-formulario">
+        <label for="login-usuario">Usuario</label>
+        <input
+            type="text"
+            id="login-usuario"
+            data-testid="login-usuario"
+            name="usuario"
+            value="{{ valores.usuario }}"
+            required
+        >
+        {% if errores.usuario %}
+            <p class="mensaje-error-campo" id="error-login-usuario" data-testid="error-login-usuario">{{ errores.usuario }}</p>
+        {% endif %}
+    </div>
+
+    <div class="campo-formulario">
+        <label for="login-password">Contraseña</label>
+        <input
+            type="password"
+            id="login-password"
+            data-testid="login-password"
+            name="password"
+            required
+        >
+        {% if errores.password %}
+            <p class="mensaje-error-campo" id="error-login-password" data-testid="error-login-password">{{ errores.password }}</p>
+        {% endif %}
+    </div>
+
+    <div class="acciones-formulario">
+        <button type="submit" id="btn-login" data-testid="btn-login">Iniciar sesión</button>
+    </div>
+</form>
+{% endblock %}

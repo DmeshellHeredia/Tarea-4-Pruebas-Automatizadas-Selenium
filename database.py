@@ -202,3 +202,50 @@ def eliminar_producto(producto_id):
             cursor.close()
         if conexion is not None and conexion.is_connected():
             conexion.close()
+
+
+def obtener_usuario_por_nombre(usuario):
+    conexion = None
+    cursor = None
+    try:
+        conexion = obtener_conexion()
+        cursor = conexion.cursor(dictionary=True)
+        cursor.execute(
+            "SELECT id, usuario, password_hash FROM usuarios WHERE usuario = %s",
+            (usuario,),
+        )
+        return cursor.fetchone()
+    except Error:
+        return None
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
+
+
+def crear_usuario(usuario, password_hash):
+    conexion = None
+    cursor = None
+    try:
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        cursor.execute(
+            """
+            INSERT INTO usuarios (usuario, password_hash)
+            VALUES (%s, %s)
+            ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash)
+            """,
+            (usuario, password_hash),
+        )
+        conexion.commit()
+        return True
+    except Error:
+        if conexion is not None:
+            conexion.rollback()
+        return False
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conexion is not None and conexion.is_connected():
+            conexion.close()

@@ -1,5 +1,7 @@
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for
+from werkzeug.security import check_password_hash
 
+from auth import login_required
 from config import Config
 from database import (
     actualizar_producto,
@@ -7,6 +9,7 @@ from database import (
     eliminar_producto,
     obtener_producto_por_id,
     obtener_productos,
+    obtener_usuario_por_nombre,
     verificar_conexion,
 )
 from validators import validar_datos_producto
@@ -15,7 +18,43 @@ app = Flask(__name__)
 app.secret_key = Config.SECRET_KEY
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    valores = {"usuario": ""}
+    errores = {}
+
+    if request.method == "POST":
+        valores["usuario"] = request.form.get("usuario", "")
+        password = request.form.get("password", "")
+
+        if not valores["usuario"].strip():
+            errores["usuario"] = "El usuario es obligatorio."
+        if not password:
+            errores["password"] = "La contraseña es obligatoria."
+
+        if not errores:
+            usuario_db = obtener_usuario_por_nombre(valores["usuario"].strip())
+            if usuario_db and check_password_hash(
+                usuario_db["password_hash"], password
+            ):
+                session.clear()
+                session["usuario_id"] = usuario_db["id"]
+                session["usuario_nombre"] = usuario_db["usuario"]
+                return redirect(url_for("listar_productos"))
+
+            errores["credenciales"] = "Usuario o contraseña incorrectos."
+
+    return render_template("login.html", valores=valores, errores=errores)
+
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+
 @app.route("/")
+@login_required
 def inicio():
     conexion_ok, mensaje_conexion = verificar_conexion()
     return render_template(
@@ -24,12 +63,14 @@ def inicio():
 
 
 @app.route("/productos", methods=["GET"])
+@login_required
 def listar_productos():
     productos, error = obtener_productos()
     return render_template("productos.html", productos=productos, error=error)
 
 
 @app.route("/productos/nuevo", methods=["GET", "POST"])
+@login_required
 def registrar_producto():
     valores = {"nombre": "", "precio": "", "cantidad": "", "categoria": ""}
     errores = {}
@@ -59,6 +100,7 @@ def registrar_producto():
 
 
 @app.route("/productos/<int:producto_id>/editar", methods=["GET", "POST"])
+@login_required
 def editar_producto(producto_id):
     producto, error = obtener_producto_por_id(producto_id)
 
@@ -119,6 +161,7 @@ def editar_producto(producto_id):
 
 
 @app.route("/productos/<int:producto_id>/eliminar", methods=["POST"])
+@login_required
 def eliminar_producto_ruta(producto_id):
     exito, resultado = eliminar_producto(producto_id)
 
