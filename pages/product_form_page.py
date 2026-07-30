@@ -87,3 +87,24 @@ class ProductFormPage:
             EC.visibility_of_element_located(self.ERROR_CATEGORIA)
         )
         return elemento.text
+
+    def obtener_valor_nombre(self):
+        campo = self.espera.until(EC.visibility_of_element_located(self.NOMBRE))
+        return campo.get_attribute("value")
+
+    def obtener_valor_precio(self):
+        return self.driver.find_element(*self.PRECIO).get_attribute("value")
+
+    def obtener_valor_cantidad(self):
+        return self.driver.find_element(*self.CANTIDAD).get_attribute("value")
+
+    def obtener_valor_categoria(self):
+        return self.driver.find_element(*self.CATEGORIA).get_attribute("value")
+
+    def obtener_valores_actuales(self):
+        return {
+            "nombre": self.obtener_valor_nombre(),
+            "precio": self.obtener_valor_precio(),
+            "cantidad": self.obtener_valor_cantidad(),
+            "categoria": self.obtener_valor_categoria(),
+        }

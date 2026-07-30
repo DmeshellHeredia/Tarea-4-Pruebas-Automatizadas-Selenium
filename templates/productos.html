@@ -33,7 +33,7 @@
                     <td class="producto-cantidad" data-testid="producto-cantidad-{{ producto.id }}">{{ producto.cantidad }}</td>
                     <td class="producto-categoria" data-testid="producto-categoria-{{ producto.id }}">{{ producto.categoria }}</td>
                     <td class="celda-acciones">
-                        <a href="{{ url_for('editar_producto', producto_id=producto.id) }}">Editar</a>
+                        <a href="{{ url_for('editar_producto', producto_id=producto.id) }}" data-testid="editar-producto-{{ producto.id }}">Editar</a>
                         <form class="formulario-eliminar" method="post" action="{{ url_for('eliminar_producto_ruta', producto_id=producto.id) }}" onsubmit="return confirm('Esta seguro de que desea eliminar este producto?');">
                             <button type="submit" class="boton-eliminar">Eliminar</button>
                         </form>
