@@ -5,15 +5,15 @@
 {% block contenido %}
 <h2>Listado de productos</h2>
 
-<a class="enlace-agregar" href="{{ url_for('registrar_producto') }}">Agregar producto</a>
+<a class="enlace-agregar" id="btn-agregar-producto" data-testid="btn-agregar-producto" href="{{ url_for('registrar_producto') }}">Agregar producto</a>
 
 {% if error %}
     <p class="mensaje-error">{{ error }}</p>
 {% elif not productos %}
-    <p class="mensaje-vacio">No hay productos registrados todavía.</p>
+    <p class="mensaje-vacio" id="listado-vacio" data-testid="listado-vacio">No hay productos registrados todavía.</p>
 {% else %}
     <div class="tabla-contenedor">
-        <table class="tabla-productos">
+        <table class="tabla-productos" id="tabla-productos" data-testid="tabla-productos">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -26,12 +26,12 @@
             </thead>
             <tbody>
                 {% for producto in productos %}
-                <tr>
+                <tr id="fila-producto-{{ producto.id }}" data-testid="fila-producto-{{ producto.id }}">
                     <td>{{ producto.id }}</td>
-                    <td>{{ producto.nombre }}</td>
-                    <td>{{ "%.2f"|format(producto.precio) }}</td>
-                    <td>{{ producto.cantidad }}</td>
-                    <td>{{ producto.categoria }}</td>
+                    <td class="producto-nombre" data-testid="producto-nombre-{{ producto.id }}">{{ producto.nombre }}</td>
+                    <td class="producto-precio" data-testid="producto-precio-{{ producto.id }}">{{ "%.2f"|format(producto.precio) }}</td>
+                    <td class="producto-cantidad" data-testid="producto-cantidad-{{ producto.id }}">{{ producto.cantidad }}</td>
+                    <td class="producto-categoria" data-testid="producto-categoria-{{ producto.id }}">{{ producto.categoria }}</td>
                     <td class="celda-acciones">
                         <a href="{{ url_for('editar_producto', producto_id=producto.id) }}">Editar</a>
                         <form class="formulario-eliminar" method="post" action="{{ url_for('eliminar_producto_ruta', producto_id=producto.id) }}" onsubmit="return confirm('Esta seguro de que desea eliminar este producto?');">

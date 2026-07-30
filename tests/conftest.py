@@ -89,6 +89,17 @@ def driver():
 
 
 @pytest.fixture
+def sesion_iniciada(live_server, driver):
+    from pages.login_page import LoginPage
+
+    LoginPage(driver, live_server).iniciar_sesion(
+        os.environ["TEST_LOGIN_USER"], os.environ["TEST_LOGIN_PASSWORD"]
+    ).esperar_redireccion_a_productos()
+
+    return driver
+
+
+@pytest.fixture
 def nombre_evidencia():
     return {"valor": None}
 

@@ -26,7 +26,7 @@
         {% with mensajes = get_flashed_messages(with_categories=true) %}
             {% if mensajes %}
                 {% for categoria, mensaje in mensajes %}
-                    <p class="mensaje-flash mensaje-flash-{{ categoria }}">{{ mensaje }}</p>
+                    <p class="mensaje-flash mensaje-flash-{{ categoria }}"{% if categoria == 'exito' %} id="mensaje-exito" data-testid="mensaje-exito"{% endif %}>{{ mensaje }}</p>
                 {% endfor %}
             {% endif %}
         {% endwith %}

@@ -17,7 +17,7 @@
             required
         >
         {% if errores.nombre %}
-            <p class="mensaje-error-campo">{{ errores.nombre }}</p>
+            <p class="mensaje-error-campo" id="error-nombre" data-testid="error-nombre">{{ errores.nombre }}</p>
         {% endif %}
     </div>
 
@@ -34,7 +34,7 @@
             required
         >
         {% if errores.precio %}
-            <p class="mensaje-error-campo">{{ errores.precio }}</p>
+            <p class="mensaje-error-campo" id="error-precio" data-testid="error-precio">{{ errores.precio }}</p>
         {% endif %}
     </div>
 
@@ -51,7 +51,7 @@
             required
         >
         {% if errores.cantidad %}
-            <p class="mensaje-error-campo">{{ errores.cantidad }}</p>
+            <p class="mensaje-error-campo" id="error-cantidad" data-testid="error-cantidad">{{ errores.cantidad }}</p>
         {% endif %}
     </div>
 
@@ -66,13 +66,13 @@
             required
         >
         {% if errores.categoria %}
-            <p class="mensaje-error-campo">{{ errores.categoria }}</p>
+            <p class="mensaje-error-campo" id="error-categoria" data-testid="error-categoria">{{ errores.categoria }}</p>
         {% endif %}
     </div>
 
     <div class="acciones-formulario">
-        <button type="submit">Guardar producto</button>
-        <a href="{{ url_for('listar_productos') }}" class="enlace-cancelar">Cancelar</a>
+        <button type="submit" id="btn-guardar-producto" data-testid="btn-guardar-producto">Guardar producto</button>
+        <a href="{{ url_for('listar_productos') }}" id="btn-cancelar-producto" data-testid="btn-cancelar-producto" class="enlace-cancelar">Cancelar</a>
     </div>
 </form>
 {% endblock %}
