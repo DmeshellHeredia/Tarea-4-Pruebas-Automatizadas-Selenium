@@ -1,0 +1,200 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    color: #222;
+}
+
+.encabezado {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 1rem 2rem;
+}
+
+.encabezado h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.encabezado nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.encabezado nav a:hover {
+    text-decoration: underline;
+}
+
+.contenido {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mensaje-exito {
+    color: #1e7e34;
+    font-weight: bold;
+}
+
+.mensaje-error {
+    color: #b02a37;
+    font-weight: bold;
+}
+
+.mensaje-vacio {
+    color: #555555;
+    font-style: italic;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+    border: 1px solid #cccccc;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+.tabla-productos th {
+    background-color: #2c3e50;
+    color: #ffffff;
+}
+
+.tabla-productos tbody tr:nth-child(even) {
+    background-color: #ececec;
+}
+
+@media (max-width: 600px) {
+    .tabla-productos th,
+    .tabla-productos td {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+.enlace-agregar {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.mensaje-flash {
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.mensaje-flash-exito {
+    background-color: #d4edda;
+    color: #1e7e34;
+}
+
+.mensaje-flash-error {
+    background-color: #f8d7da;
+    color: #b02a37;
+}
+
+.campo-formulario {
+    margin-bottom: 1rem;
+}
+
+.campo-formulario label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+}
+
+.campo-formulario input {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.mensaje-error-campo {
+    color: #b02a37;
+    font-size: 0.85rem;
+    margin: 0.3rem 0 0 0;
+}
+
+.acciones-formulario {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.acciones-formulario button {
+    background-color: #2c3e50;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.acciones-formulario button:hover {
+    background-color: #1f2d3a;
+}
+
+.enlace-cancelar {
+    color: #b02a37;
+    text-decoration: none;
+}
+
+.enlace-cancelar:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .campo-formulario input {
+        max-width: 100%;
+    }
+}
+
+.celda-acciones {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.formulario-eliminar {
+    display: inline;
+    margin: 0;
+}
+
+.boton-eliminar {
+    background-color: #b02a37;
+    color: #ffffff;
+    border: none;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.boton-eliminar:hover {
+    background-color: #8c222c;
+}
+
+@media (max-width: 600px) {
+    .celda-acciones {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+    }
+}

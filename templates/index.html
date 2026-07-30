@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio - Gestión de Productos{% endblock %}
+
+{% block contenido %}
+<p>La aplicación Flask está funcionando correctamente.</p>
+
+{% if conexion_ok %}
+    <p class="mensaje-exito">{{ mensaje_conexion }}</p>
+{% else %}
+    <p class="mensaje-error">{{ mensaje_conexion }}</p>
+{% endif %}
+{% endblock %}
