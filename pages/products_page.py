@@ -106,3 +106,34 @@ class ProductsPage:
             )
 
         return self.espera.until(_condicion)
+
+    def hacer_clic_eliminar(self, producto_id):
+        localizador = (
+            By.CSS_SELECTOR,
+            f'[data-testid="eliminar-producto-{producto_id}"]',
+        )
+        self.espera.until(EC.element_to_be_clickable(localizador)).click()
+        return self
+
+    def esperar_alerta_presente(self):
+        self.espera.until(EC.alert_is_present())
+        return self.driver.switch_to.alert
+
+    def aceptar_alerta_eliminacion(self):
+        self.esperar_alerta_presente().accept()
+        return self
+
+    def cancelar_alerta_eliminacion(self):
+        self.esperar_alerta_presente().dismiss()
+        return self
+
+    def esperar_fila_desaparece(self, producto_id):
+        localizador = (By.ID, f"fila-producto-{producto_id}")
+        self.espera.until(EC.invisibility_of_element_located(localizador))
+        return self
+
+    def fila_existe(self, producto_id):
+        return bool(self.driver.find_elements(By.ID, f"fila-producto-{producto_id}"))
+
+    def no_hay_mensaje_exito(self):
+        return not self.driver.find_elements(*self.MENSAJE_EXITO)
