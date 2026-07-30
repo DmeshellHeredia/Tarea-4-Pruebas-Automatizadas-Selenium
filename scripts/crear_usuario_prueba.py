@@ -8,6 +8,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import crear_usuario  # noqa: E402
 
 
+def preparar_usuario(usuario, password):
+    password_hash = generate_password_hash(password)
+    return crear_usuario(usuario, password_hash)
+
+
 def main():
     usuario = os.getenv("TEST_LOGIN_USER")
     password = os.getenv("TEST_LOGIN_PASSWORD")
@@ -19,9 +24,7 @@ def main():
         )
         sys.exit(1)
 
-    password_hash = generate_password_hash(password)
-
-    if crear_usuario(usuario, password_hash):
+    if preparar_usuario(usuario, password):
         print(f"Usuario de prueba '{usuario}' preparado correctamente.")
     else:
         print("No fue posible preparar el usuario de prueba.")
