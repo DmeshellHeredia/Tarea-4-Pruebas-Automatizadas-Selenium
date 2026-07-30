@@ -9,7 +9,7 @@
     <p class="mensaje-error" id="mensaje-login-error" data-testid="mensaje-login-error">{{ errores.credenciales }}</p>
 {% endif %}
 
-<form method="post" action="{{ url_for('login') }}">
+<form method="post" action="{{ url_for('login') }}" novalidate>
     <div class="campo-formulario">
         <label for="login-usuario">Usuario</label>
         <input

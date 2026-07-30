@@ -5,7 +5,7 @@
 {% block contenido %}
 <h2>Registrar producto</h2>
 
-<form method="post" action="{{ url_for('registrar_producto') }}">
+<form method="post" action="{{ url_for('registrar_producto') }}" novalidate>
     <div class="campo-formulario">
         <label for="nombre">Nombre</label>
         <input
