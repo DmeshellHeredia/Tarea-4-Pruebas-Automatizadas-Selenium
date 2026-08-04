@@ -163,10 +163,8 @@ def pytest_runtest_makereport(item, call):
                 contenido_base64 = base64.b64encode(
                     ruta_captura.read_bytes()
                 ).decode("ascii")
-                if extras_stash_key not in item.config.stash:
-                    item.config.stash[extras_stash_key] = []
-                item.config.stash[extras_stash_key].append(
+                item.config.stash[extras_stash_key] = [
                     pytest_html.extras.image(contenido_base64, name=nombre)
-                )
+                ]
 
     yield
