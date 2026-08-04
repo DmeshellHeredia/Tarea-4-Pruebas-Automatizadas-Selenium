@@ -62,8 +62,7 @@ Tarea-4-Pruebas-Automatizadas-Selenium/
 │   └── screenshots/
 └── docs/
     ├── MATRIZ_TRAZABILIDAD.md
-    ├── GUIA_EJECUCION.md
-    └── GUION_VIDEO.md
+    └── GUIA_EJECUCION.md
 ```
 
 ## Requisitos previos
@@ -230,7 +229,7 @@ Ver detalle completo, marcadores y capturas en
 
 - Repositorio: https://github.com/DmeshellHeredia/Tarea-4-Pruebas-Automatizadas-Selenium
 - Historias de usuario (Jira): https://michaelheredia60.atlassian.net/jira/software/projects/T4SEL/boards/34/backlog
-- Video demostrativo: PENDIENTE_ENLACE_VIDEO
+- Video demostrativo: https://youtu.be/2dzGGJBXGAg
 
 ## Consideraciones de seguridad
 
