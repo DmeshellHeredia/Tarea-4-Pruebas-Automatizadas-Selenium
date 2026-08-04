@@ -63,8 +63,7 @@ Tarea-4-Pruebas-Automatizadas-Selenium/
 └── docs/
     ├── MATRIZ_TRAZABILIDAD.md
     ├── GUIA_EJECUCION.md
-    ├── GUION_VIDEO.md
-    └── TEXTO_ENTREGA.md
+    └── GUION_VIDEO.md
 ```
 
 ## Requisitos previos
